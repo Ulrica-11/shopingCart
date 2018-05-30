@@ -46,13 +46,9 @@
                                 <div class="cart-tab-1">
                                     <div class="cart-item-check">
                                         <a href="javascript:void 0" class="item-check-btn" v-bind:class="{'check':item.checked}" @click="selectedProduct(item)">
-                                            <!--<svg class="icon icon-ok">-->
-                                                <!--<use xlink:href="#icon-ok"></use>-->
-                                            <!--</svg>-->
                                         </a>
                                     </div>
                                     <div class="cart-item-pic">
-                                        <!--<img src="img/goods-1.jpg" alt="烟">-->
                                         <img v-bind:src='item.productImage' alt="烟">
                                     </div>
                                     <div class="cart-item-title">
@@ -87,9 +83,6 @@
                                     <div class="cart-item-operation">
                                         <a href="javascript:void 0" class="item-edit-btn">
                                             <i class="iconfont icon-delete"></i>
-                                            <!--<svg class="icon icon-del">-->
-                                                <!--<use xlink:href="#icon-del"></use>-->
-                                            <!--</svg>-->
                                         </a>
                                     </div>
                                 </div>
@@ -104,7 +97,6 @@
                         <div class="item-all-check">
                             <a href="javascript:void 0" @click="checkAll(true)">
                                 <span class="item-check-btn" :class="{'check':checkAllFlag}">
-                                    <!--<svg class="icon icon-ok"><use xlink:href="#icon-ok"></use></svg>-->
                                 </span>
                                 <span>全选</span>
                             </a>
