@@ -20,7 +20,7 @@ var goods = new Vue({
         cartView: function () {
             this.$http.get("data/cartData.json").then(res=>{
                 this.productList = res.data.result.list;
-                this.totalMoney = res.data.result.totalMoney;
+                // this.totalMoney = res.data.result.totalMoney;
             });
             // let _this = this;
             // _this.$http.get("data/cartData.json", {"id":123}).then(function (res) {
@@ -37,6 +37,7 @@ var goods = new Vue({
                     product.productQuantity = 1;
                 }
             }
+            this.calcTotalPrice();
         },
         selectedProduct: function (item) {
             // 判断一个对象里的变量是否存在 typeof
@@ -47,6 +48,7 @@ var goods = new Vue({
             }else{
                 item.checked = !item.checked; // 取反
             }
+            this.calcTotalPrice();
         },
         checkAll: function (flag) {
             this.checkAllFlag = flag;
@@ -56,6 +58,16 @@ var goods = new Vue({
                     _this.$set(item,"checked",_this.checkAllFlag);
                 }else{
                     item.checked = _this.checkAllFlag;
+                }
+            });
+            this.calcTotalPrice();
+        },
+        calcTotalPrice: function () {
+            var _this = this;
+            this.totalMoney = 0;
+            this.productList.forEach(function (item, index) {
+                if(item.checked){
+                    _this.totalMoney += item.productPrice*item.productQuantity;
                 }
             });
         }
