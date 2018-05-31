@@ -1,9 +1,16 @@
+//全局过滤器
+Vue.filter("money", function (value, type) {
+    return "￥ " + value.toFixed(2) + type;
+});
+
 var goods = new Vue({
     el: "#app",
     data: {
         totalMoney: 0,
         productList: [],
-        checkAllFlag: false
+        checkAllFlag: false,
+        delFlag: false,
+        carProduct: ''
     },
     filters: { // 局部过滤器
         formatMoney: function (value) {
@@ -14,7 +21,7 @@ var goods = new Vue({
         this.$nextTick(function () {
             goods.cartView();
         });
-        // this.cartView();
+        // this.cartView();)
     },
     methods: {
         cartView: function () {
@@ -70,10 +77,18 @@ var goods = new Vue({
                     _this.totalMoney += item.productPrice*item.productQuantity;
                 }
             });
+        },
+        delConfirm: function (item) {
+            this.delFlag = true;
+            this.carProduct = item;
+        },
+        delProduct: function () {
+            // vue 1.0 删除$delete
+            // this.delProduct.$delete(this.carProduct);
+
+            var index = this.productList.indexOf(this.carProduct);
+            this.productList.splice(index,1);
+            this.delFlag = false;
         }
     }
-});
-//全局过滤器
-Vue.filter("money", function (value, type) {
-    return "￥ " + value.toFixed(2) + type;
 });
